@@ -1,6 +1,6 @@
 {
   "name": "underscript-plugin-obs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Hook UnderScript into OBS",
   "main": "dist/underscript-plugin-obs.user.js",
   "homepage": "https://github.com/feildmaster/underscript-plugin-obs#readme",
