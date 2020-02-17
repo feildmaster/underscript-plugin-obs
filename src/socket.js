@@ -1,9 +1,21 @@
 import enabled from './enabled';
-import { logger, toast } from './plugin';
-import { USE_ACTIVE, address, password, scene } from './socketSettings';
+import { logger, toast, settings } from './plugin';
+
+const address = settings().add({
+  name: 'Socket Address',
+  key: 'address',
+  type: 'text',
+  default: 'localhost:4444', 
+});
+
+const password = settings().add({
+  name: 'Socket Password',
+  key: 'password',
+  type: 'password',
+});
 
 export let activeScene = '';
-export const obs = new OBSWebSocket();
+const obs = new OBSWebSocket();
 
 obs.on('error', socketError);
 obs.on('SwitchScenes', (data) => {
@@ -41,13 +53,6 @@ export function connect() {
       });
     }
   });
-}
-
-export function getScene() {
-  if (scene.value() === USE_ACTIVE) {
-    return activeScene;
-  }
-  return scene.value();
 }
 
 function socketError(err) {

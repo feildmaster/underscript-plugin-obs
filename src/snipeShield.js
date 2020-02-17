@@ -1,13 +1,19 @@
 import { toast, settings } from './plugin';
-import { connected, getScene } from './socket';
+import { connected, activeScene } from './socket';
 
+const USE_ACTIVE = 'Use Active';
 const BLANK_TOAST = {
   close: () => {},
 };
 
 let snipeToast = BLANK_TOAST;
 
-// snipeScene should go here
+const scene = settings().add({
+  name: 'Snipe Scene',
+  key: 'sniperScene',
+  type: 'text',
+  default: USE_ACTIVE,
+});
 
 const snipeSource = settings().add({
   name: 'Snipe Source',
@@ -21,7 +27,7 @@ export default function snipeShield(render = false) {
 
   obs.send('SetSourceRender', {
     render,
-    'scene-name': getScene(),
+    'scene-name': scene.value() === USE_ACTIVE ? activeScene : scene.value(),
     source: snipeSource.value(),
   }).then(() => {
     if (render) snipeToast = toast('Snipe Shield on') || BLANK_TOAST; // If it ever fails?
