@@ -23,6 +23,7 @@ module.exports = {
         require: [
           'https://unpkg.com/obs-websocket-js@^4.x/dist/obs-websocket.min.js',
         ],
+        grant: 'none',
       },
       pretty: true,
     }),
