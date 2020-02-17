@@ -15,7 +15,7 @@ const password = settings().add({
 });
 
 export let activeScene = '';
-const obs = new OBSWebSocket();
+export const obs = new OBSWebSocket();
 
 obs.on('error', socketError);
 obs.on('SwitchScenes', (data) => {
@@ -39,7 +39,7 @@ export function connect() {
       timeout: 10000,
     });
 
-    obs.send('GetSceneList').then((data) => {
+    return obs.send('GetSceneList').then((data) => {
       activeScene = data.currentScene;
     }).catch(console.error);
   }).catch((err) => {

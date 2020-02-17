@@ -1,5 +1,5 @@
 import { toast, settings } from './plugin';
-import { connected, activeScene } from './socket';
+import { connected, activeScene, obs } from './socket';
 
 const USE_ACTIVE = 'Use Active';
 const BLANK_TOAST = {
